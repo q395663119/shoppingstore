@@ -17,6 +17,10 @@ public class ProductinfoServiceImpl implements ProductinfoService {
         return pfm.selectAllP_type();
     }
 
+    public List<Productinfo> selectAllProductsByP_type(String p_type) {
+        return pfm.selectAllProductsByP_type(p_type);
+    }
+
     public int deleteByPrimaryKey(Integer pId) {
         return pfm.deleteByPrimaryKey(pId);
     }

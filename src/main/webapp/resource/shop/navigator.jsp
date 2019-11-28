@@ -267,7 +267,7 @@
         </div>
     </div>
 </div>
-<iframe src="<%=basePath%>resource/shop/showProducts.jsp" id="myfram"></iframe>
+<iframe id="myfram"></iframe>
 <img src="<%=basePath%>resource/images/top.png" id="topImg">
 
 <script>
@@ -288,7 +288,9 @@
             }
         });
         $(".pieces").on("click",".future_ui__piece",function(){
-           //alert($(this).children().children().children().text());
+           var type=$(this).children().children().children().text();
+            $("#myfram").attr("src","<%=basePath%>resource/shop/showProducts.jsp?p_type="+type)
+
             $(".intro").hide();
             $("#myfram").show();
             $("#topImg").show();
@@ -297,6 +299,7 @@
             $(".intro").show();
             $("#myfram").hide(2000);
             $("#topImg").hide();
+
         })
     });
 </script>

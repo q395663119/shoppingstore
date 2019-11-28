@@ -10,6 +10,7 @@
     <base href="<%=basePath%>">
     <meta charset="UTF-8">
     <title>商城菜单-导航分页</title>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <link rel="stylesheet" href="<%=basePath%>resource/css/example.css">
     <script src="<%=basePath%>resource/js/sHover.min.js"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
@@ -33,6 +34,17 @@
 <script>
     window.onload=function(){
 
+        $.ajax({
+            url:"selectAllProductsByP_type",
+            type:"post",
+            data:{
+                "p_type":getQueryString("p_type")
+            },
+            success:function(data){
+                alert(data);
+                console.log(data);
+            }
+        });
 
         var b=new sHover('head','headIntro');
 
@@ -81,6 +93,13 @@
         }else{
             return document.body.clientHeight;
         }
+    }
+    function getQueryString(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)
+            return  decodeURI(r[2]);
+        return null;
     }
 </script>
 
