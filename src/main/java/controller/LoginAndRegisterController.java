@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import serviceimpl.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -26,7 +25,7 @@ public class LoginAndRegisterController {
         }else{
            if(DigestUtils.md5Hex(password2.getBytes()).equals(DigestUtils.md5Hex(password.getBytes()))){
                ui.setPassword(DigestUtils.md5Hex(password.getBytes()));
-               int i =usi.updateByPrimaryKeySelective(ui);
+               usi.updateByPrimaryKeySelective(ui);
                    return "true";
            }else{
                 return "error";

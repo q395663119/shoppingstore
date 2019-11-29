@@ -24,8 +24,8 @@
     <input type="text" id="username3" placeholder="用户名"/><br/>
     <input type="password" id="password3" placeholder="输入新密码"/><br/>
     <input type="password" id="password4" placeholder="输入新密码"/><br/>
-    <input type="button" value="完成" id="btnUpdate">
-    <div id="msg3"></div>
+    <input type="button" value="完成" id="btnUpdate"><br/>
+    <div id="msg3"></div><br/>
 
     <script type="text/javascript">
         $(function(){
