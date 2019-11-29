@@ -16,17 +16,17 @@
     <link rel="stylesheet" type="text/css" href="<%=basePath%>resource/css/component.css" />
 
 
-   <style>
+    <style>
 
-       body{
-           background: #2A2B30;
-       }
+        body{
+            background: #2A2B30;
+        }
 
-   </style>
+    </style>
 
 </head>
 <body >
-	<!-- Compare basket -->
+<!-- Compare basket -->
 <div class="compare-basket">
     <button class="action action--button action--compare"><i class="fa fa-check"></i><span class="action__text">Compare</span></button>
 </div>
@@ -35,30 +35,8 @@
     <!-- Product grid -->
     <section class="grid">
         <!-- Products -->
-        <div class="product">
-            <div class="product__info">
-                <img class="product__image" src="<%=basePath%>resource/images/1.png" alt="Product 1" />
-                <h3 class="product__title">商品名</h3>
-                <span class="product__region extra highlight">商品介绍</span>
-                <span class="product__varietal extra highlight">商品规格</span>
-                <span class="product__price highlight">价格</span>
-                <button class="action action--button action--buy"><i class="fa fa-shopping-cart"></i><span class="action__text cd-add-to-cart">Add to cart</span></button>
-            </div>
-            <label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"></i><i class="fa fa-check"></i><span class="action__text action__text--invisible">Add to compare</span></label>
-        </div>
 
 
-        <div class="product">
-            <div class="product__info">
-                <img class="product__image" src="<%=basePath%>resource/images/2.png" alt="Product 2" />
-                <h3 class="product__title">商品名</h3>
-                <span class="product__region extra highlight">商品介绍</span>
-                <span class="product__varietal extra highlight">商品规格</span>
-                <span class="product__price highlight">价格</span>
-                <button class="action action--button action--buy"><i class="fa fa-shopping-cart"></i><span class="action__text cd-add-to-cart">Add to cart</span></button>
-            </div>
-            <label class="action action--compare-add"><input class="check-hidden" type="checkbox" /><i class="fa fa-plus"></i><i class="fa fa-check"></i><span class="action__text action__text--invisible">Add to compare</span></label>
-        </div>
 
     </section>
 </div><!-- /view -->
@@ -75,43 +53,47 @@
 
 
 
-    <script src="<%=basePath%>resource/js/classie.js"></script>
-    <script src="<%=basePath%>resource/js/main.js"></script>
+<script src="<%=basePath%>resource/js/classie.js"></script>
+<script src="<%=basePath%>resource/js/main.js"></script>
 
 <script>
     $(function(){
 
-  $.ajax({
-   url:"selectAllProductsByP_type",
-      type:"post",
-      data:{
-      "p_type":getQueryString("p_type")
-      },
-      success:function(data){
+        $.ajax({
+            url:"selectAllProductsByP_type",
+            type:"post",
+            data:{
+                "p_type":getQueryString("p_type")
+            },
+            success:function(data){
 
-       // for(var i=0;i<data.length;i++){
-       // var str="<div  class='sHoverItem'>" +
-       //     "    <img  src='"+data[i].pic+"'>" +
-       //     "    <span  class='sIntro'>" +
-       //     "<h2>"+data[i].pName+"</h2>" +
-       //     "<p>"+data[i].intro+"</p>" +
-       //     "<p>$"+data[i].price+"</p>"+
-       //     "<button >立即购买</button>" +
-       //     "<button pid='"+data[i].pId+"' class='addCart'>加入购物车</button>" +
-       //     "</span>" +
-       //     " </div>";
-       //     $(".container").append(str);
-       // }
+                for(var i=0;i<data.length;i++){
+                    var str="<div class='product'>" +
+                        "            <div class='product__info'>" +
+                        "                <img class='product__image' src='<%=basePath%>resource/images/1.png' alt='Product 1' />" +
+                        "                <h3 class='product__title'>"+data[i].pName+"</h3>" +
+                        "                <span class='product__region extra highlight'>"+data[i].intro+"</span>" +
+                        "                <span class='product__price highlight'>"+data[i].price+"</span>" +
+                        "                <button class='action action--button action--buy'><i class='fa fa-shopping-cart'></i><span class='action__text cd-add-to-cart'>加入购物车</span></button>" +
+                        "            </div>" +
+                        "            <label class='action action--compare-add'><input class='check-hidden' type='checkbox' /><i class='fa fa-plus'></i><i class='fa fa-check'></i><span class='action__text action__text--invisible'>比较商品</span></label>'" +
+                        "        </div>";
 
-
-      }
-  });
+                    $(".grid").append(str);
+                }
 
 
-  $(".container").on("click",".addCart",function(){
-    alert($(this).attr("pid"));
+                loadjscssfile("<%=basePath%>resource/js/classie.js","js");
+                loadjscssfile("<%=basePath%>resource/js/main.js","js");
 
-  });
+            }
+        });
+
+
+        $(".container").on("click",".addCart",function(){
+            alert($(this).attr("pid"));
+
+        });
 
 
     });
