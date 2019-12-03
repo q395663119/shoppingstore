@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import serviceimpl.UserServiceImpl;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -33,19 +35,63 @@ public class LoginAndRegisterController {
         }
     }
 
+    /*用cookie做登录*/
     @RequestMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password, @RequestParam String flag, HttpServletRequest req){
+    public String login(@RequestParam String username, @RequestParam String password, @RequestParam String flag, HttpServletRequest req, HttpServletResponse resp){
         Userinfo ui =usi.selectByUsername(username);
         if(ui==null){
             return "none";
         }else{
             if(DigestUtils.md5Hex(password.getBytes()).equals(ui.getPassword())){
-                if(flag.equals("yes")){
+                //if(flag.equals("yes")){
                     ui.setPassword(password);
-                    req.getSession().setAttribute("in",ui);
+                  //  req.getSession().setAttribute("in",ui);
+
+                    Cookie name = new Cookie("username",username);
+                    Cookie pwd = new Cookie("password",password);
+                    name.setMaxAge(10000);
+                    pwd.setMaxAge(10000);
+                    resp.addCookie(name);
+                    resp.addCookie(pwd);
+
+                if(flag.equals("yes")){
+                    Cookie cookie = new Cookie("flag","no");
+                    cookie.setMaxAge(10000);
+                    resp.addCookie(cookie);
                 }else{
-                    req.getSession().removeAttribute("in");
+                    Cookie cookie = new Cookie("flag","yes");
+                    cookie.setMaxAge(10000);
+                    resp.addCookie(cookie);
                 }
+
+                    /*Cookie[] co = req.getCookies();
+                    if(co.length>0){
+                        for (Cookie c:co) {
+                            if(c.getName().equals("username")||c.getName().equals("password")){
+                                c.setValue(null);
+                                c.setMaxAge(0);
+                                resp.addCookie(c);
+                            }
+                        }
+                    }*/
+
+                /*}else{
+                   // req.getSession().removeAttribute("in");
+                    *//*Cookie[] co = req.getCookies();
+                    if(co.length>0){
+                        for (Cookie c:co) {
+                            if(c.getName().equals("username")||c.getName().equals("password")){
+                                c.setValue(null);
+                                c.setMaxAge(0);
+                                resp.addCookie(c);
+                            }
+                        }
+                    }*//*
+
+                   Cookie name = new Cookie(username,username);
+                   name.setMaxAge(10000);
+                   resp.addCookie(name);
+                }*/
                 return "true";
             }else{
                 return "error";

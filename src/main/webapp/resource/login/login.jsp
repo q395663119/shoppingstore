@@ -84,19 +84,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 
    $(function(){
+     window.flag;
      /*登录记住用户和密码*/
-     var username = "${sessionScope.in.username}";
-     var password = "${sessionScope.in.password}";
+
+       /*利用cookie登录*/
+       var username=getCookie("username");
+       var username2=getCookie("flag");
+       var password=getCookie("password");
+
+       if(username2=="no"){
+           $("#username1").val(getCookie("username"));
+           $("#password1").val(getCookie("password"));
+           $("input[type='checkbox']").attr("checked","checked");
+       }else{
+
+           $("input[type='checkbox']").removeAttr("checked");
+       }
+
+       /*用session登录*/
+       //var username = "${sessionScope.in.username}";
+       //var password = "${sessionScope.in.password}";
+
+
+
      /*记住密码后后从session*/
+    /* if ($("input[type='checkbox']").is(':checked')) {
      $("#username1").val(username);
      $("#password1").val(password);
-     if($("#username1").val()!=''&&$("#password1").val()!=''){
-       $("input[type='checkbox']").attr("checked","checked");
-     }else{
-       $("input[type='checkbox']").removeAttr("checked");
-     }
+     }*/
 
-     window.flag;
+
+
      $("#btnLogin").click(function() {
        if ($("input[type='checkbox']").is(':checked')) {
          flag = "yes";
@@ -117,8 +135,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                $("#msg").html("用户不存在");
              } else if (data == "true") {
                //跳转页面
-               $("#msg").html("成功");
-               // window.location.href();
+               //$("#msg").html("成功");
+               window.location.href="<%=path%>/resource/shop/navigator.jsp?username="+$("#username1").val();
              } else {
                $("#msg").html("用户账号或密码错误");
              }
@@ -127,6 +145,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        }else{
          $("#msg").html("用户账号或密码不能为空");
        }
+
+
 
      })
 
@@ -160,6 +180,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      })
 
    })
+   function getCookie(name){
+     var strcookie = document.cookie;//获取cookie字符串
+     var arrcookie = strcookie.split("; ");//分割
+     //遍历匹配
+     for ( var i = 0; i < arrcookie.length; i++) {
+       var arr = arrcookie[i].split("=");
+       if (arr[0] == name){
+         return arr[1];
+       }
+     }
+     return "";
+   }
 </script>
 
 </body>

@@ -70,11 +70,11 @@
                 for(var i=0;i<data.length;i++){
                     var str="<div class='product'>" +
                         "            <div class='product__info'>" +
-                        "                <img class='product__image' src='<%=basePath%>resource/images/1.png' alt='Product 1' />" +
+                        "                <img class='product__image' src='"+data[i].pic+"' alt='Product 1' />" +
                         "                <h3 class='product__title'>"+data[i].pName+"</h3>" +
                         "                <span class='product__region extra highlight'>"+data[i].intro+"</span>" +
                         "                <span class='product__price highlight'>"+data[i].price+"</span>" +
-                        "                <button class='action action--button action--buy'><i class='fa fa-shopping-cart'></i><span class='action__text cd-add-to-cart'>加入购物车</span></button>" +
+                        "                <button class='action action--button action--buy' pid='"+data[i].pId+"'><i class='fa fa-shopping-cart'></i><span class='action__text cd-add-to-cart'>加入购物车</span></button>" +
                         "            </div>" +
                         "            <label class='action action--compare-add'><input class='check-hidden' type='checkbox' /><i class='fa fa-plus'></i><i class='fa fa-check'></i><span class='action__text action__text--invisible'>比较商品</span></label>'" +
                         "        </div>";
@@ -90,8 +90,28 @@
         });
 
 
-        $(".container").on("click",".addCart",function(){
-            alert($(this).attr("pid"));
+        $(".grid").on("click",".action",function(){
+            //alert($(this).attr("pid"));
+            //当data[i].pId放在<span>标签内获取pid方式：
+           // $(this).children().req(1).attr("pId");
+
+            var username="${sessionScope.username}";
+            if(getQueryString("username")!="null"&&getQueryString("username")!=''&&getQueryString("username")!=undefined){
+                $.ajax({
+                    url:"addCart",
+                    type:"post",
+                    data:{
+                        "pid":$(this).attr("pid"),
+                        "username":getQueryString("username")
+                    },
+                    success:function(data){
+
+                    }
+                })
+
+            }else{
+                window.location.href="<%=basePath%>resource/login/login.jsp";
+            }
 
         });
 
@@ -124,7 +144,18 @@
             document.getElementsByTagName("head")[0].appendChild(fileref);
     }
 
-
+    function getCookie(name){
+        var strcookie = document.cookie;//获取cookie字符串
+        var arrcookie = strcookie.split("; ");//分割
+        //遍历匹配
+        for ( var i = 0; i < arrcookie.length; i++) {
+            var arr = arrcookie[i].split("=");
+            if (arr[0] == name){
+                return arr[1];
+            }
+        }
+        return "";
+    }
 
 </script>
 

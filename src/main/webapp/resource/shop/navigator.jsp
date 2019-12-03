@@ -284,7 +284,6 @@ $(function(){
       url:"selectAllP_type",
        type:"post",
        success:function(data){
-
          for(var i=0;i<data.length;i++){
              var str="            <div class='future_ui__piece'><span><a ><font color ='white' size='7'>"+data[i]+"</font></a></span>" +
                  "                <div class='line'></div>" +
@@ -298,12 +297,11 @@ $(function(){
 
    $(".pieces").on("click",".future_ui__piece",function(){
        var type=$(this).children().children().children().text();
-       $("#myframe").attr("src","<%=basePath%>resource/shop/showProducts.jsp?p_type="+type);
+       $("#myframe").attr("src","<%=basePath%>resource/shop/showProducts.jsp?p_type="+type+"&username="+getQueryString("username"));
 
        $(".intro").hide();
        $("#myframe").show();
        $("#topImg").show();
-
 
    });
 
@@ -313,12 +311,15 @@ $(function(){
        $("#topImg").hide();
    });
 
-
-
-
-
 });
 
+function getQueryString(name){
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r!=null)
+        return  decodeURI(r[2]);
+    return null;
+}
 
 
 
