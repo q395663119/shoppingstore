@@ -96,13 +96,13 @@
            // $(this).children().req(1).attr("pId");
 
             var username="${sessionScope.username}";
-            if(getQueryString("username")!="null"&&getQueryString("username")!=''&&getQueryString("username")!=undefined){
+            if(getCookie("username")!="null"&&getCookie("username")!=''&&getCookie("username")!=undefined){
                 $.ajax({
                     url:"addCart",
                     type:"post",
                     data:{
                         "pid":$(this).attr("pid"),
-                        "username":getQueryString("username")
+                        "username":getCookie("username")
                     },
                     success:function(data){
 
