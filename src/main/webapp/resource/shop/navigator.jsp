@@ -31,6 +31,11 @@
            right:10px;
            bottom:200px;
        }
+       #carImg{
+           position: fixed;
+           right:10px;
+           bottom:260px;
+       }
 
    </style>
 
@@ -277,6 +282,7 @@
 </div>
 <iframe  id="myframe"></iframe>
 <img src="<%=basePath%>resource/images/top.png" id="topImg"/>
+<img src="<%=basePath%>resource/images/car.png" id="carImg"/>
 <script>
 $(function(){
 /*一进页面就发请求查询所有的类别*/
@@ -311,6 +317,13 @@ $(function(){
        $("#topImg").hide();
    });
 
+   $("#carImg").click(function(){
+       if(getCookie("username")=="null"||getCookie("username")==''||getCookie("username")==undefined){
+           window.location.href="<%=basePath%>resource/login/login.jsp";
+       }
+       window.open("<%=basePath%>resource/shop/carItems.jsp");
+
+   })
 });
 
 function getQueryString(name){
@@ -322,7 +335,18 @@ function getQueryString(name){
 }
 
 
-
+function getCookie(name){
+    var strcookie = document.cookie;//获取cookie字符串
+    var arrcookie = strcookie.split("; ");//分割
+    //遍历匹配
+    for ( var i = 0; i < arrcookie.length; i++) {
+        var arr = arrcookie[i].split("=");
+        if (arr[0] == name){
+            return arr[1];
+        }
+    }
+    return "";
+}
 
 </script>
 

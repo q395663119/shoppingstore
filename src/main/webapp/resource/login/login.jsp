@@ -136,7 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              } else if (data == "true") {
                //跳转页面
                //$("#msg").html("成功");
-               window.location.href="<%=path%>/resource/shop/navigator.jsp?username="+$("#username1").val();
+               window.location.href="<%=basePath%>resource/shop/navigator.jsp?username="+$("#username1").val();
              } else {
                $("#msg").html("用户账号或密码错误");
              }

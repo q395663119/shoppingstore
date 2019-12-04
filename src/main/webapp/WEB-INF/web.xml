@@ -46,7 +46,7 @@
       <!--classpath表示从class文件下找springmvc.xml配置文件，如果是classpath*表示不仅会在class路径找还会在jar中去找  -->
       <param-value>
         classpath:springmvc.xml,
-        classpath:spring-redis.xml
+        classpath:spring-redis.xml<!--扫描redis-->
       </param-value>
     </init-param>
   </servlet>

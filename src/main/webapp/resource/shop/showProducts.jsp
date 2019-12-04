@@ -35,16 +35,8 @@
     <!-- Product grid -->
     <section class="grid">
         <!-- Products -->
-
-
-
     </section>
 </div><!-- /view -->
-
-
-
-
-
 <!-- product compare wrapper -->
 <section class="compare">
     <button class="action action--close"><i class="fa fa-remove"></i><span class="action__text action__text--invisible">Close comparison overlay</span></button>
@@ -95,7 +87,7 @@
             //当data[i].pId放在<span>标签内获取pid方式：
            // $(this).children().req(1).attr("pId");
 
-            var username="${sessionScope.username}";
+           // var username="${sessionScope.username}";
             if(getCookie("username")!="null"&&getCookie("username")!=''&&getCookie("username")!=undefined){
                 $.ajax({
                     url:"addCart",

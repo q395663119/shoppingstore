@@ -7,7 +7,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>My JSP 'shopping.jsp' starting page</title>
+    <title>购物车</title>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
@@ -305,7 +305,7 @@
             calcuPrice(labels);
 
             $.ajax({
-                url:"reduceItemsNum",
+                url:"plusItemsNum",
                 type:"post",
                 data:{
                     "pnum":$(this).prev().val(),
@@ -318,8 +318,11 @@
 
 
         $(".cartBox").on("click",".reduce",function(){
-            if($(this).next().val()<1){
-                $(this).next().val(0);
+            if($(this).next().val()<=1){
+               /* if($(this).next().val()<=0){
+                    $(this).parent().parent().hide();
+                }*/
+                $(this).parent().parent().parent().remove();
             }else{
                 $(this).next().val(parseInt($(this).next().val())-1);
             }
@@ -494,13 +497,6 @@
         }
     }
 
-    function getCookie(name){
-        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-        var r = window.location.search.substr(1).match(reg);
-        if(r!=null)
-            return  unescape(r[2]);
-        return null;
-    }
 
     function getCookie(name){
         var strcookie = document.cookie;
