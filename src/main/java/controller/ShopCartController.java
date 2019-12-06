@@ -154,8 +154,9 @@ public class ShopCartController {
                 pi.setpNum(pi.getpNum()-pnum);
                 psi.updateByPrimaryKey(pi);
                 return "yes";
+            }else{
+                return "no";
             }
-            return "no";
     }
 
 }
