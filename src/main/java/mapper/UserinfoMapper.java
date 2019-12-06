@@ -7,6 +7,8 @@ public interface UserinfoMapper {
 
     String selectEmailByUsername(String username);
 
+    int selectUidByUsername(String username);
+
     int deleteByPrimaryKey(Integer uId);
 
     int insert(Userinfo record);

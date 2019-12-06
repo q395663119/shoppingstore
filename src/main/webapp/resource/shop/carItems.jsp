@@ -184,6 +184,7 @@
 
     <button type="button" class="btn btn-success" id="sendMail">发送验证码</button>
     <button type="button" class="btn btn-success" id="surePay">确认付款</button>
+    <div id="msg"></div>
 </div>
 
 
@@ -441,7 +442,9 @@
                     },
                     success:function (data) {
                         if(data=="yes"){
-
+                            $("#msg").html("支付成功")
+                        }else{
+                            $("#msg").html("支付失败")
                         }
                     }
 

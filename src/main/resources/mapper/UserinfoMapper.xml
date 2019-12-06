@@ -12,6 +12,10 @@
     U_ID, USERNAME, PASSWORD, EMAIL, REGISTER_TIME
   </sql>
 
+  <select id="selectUidByUsername" resultType="java.lang.Integer">
+    select u_id from userinfo where username=#{username,jdbcType=VARCHAR}
+  </select>
+
   <select id="selectByUsername" resultMap="BaseResultMap">
     select <include refid="Base_Column_List" /> from userinfo where USERNAME=#{username.jdbcType=VARCHAR}
   </select>
