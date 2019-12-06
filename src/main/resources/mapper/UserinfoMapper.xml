@@ -16,6 +16,10 @@
     select <include refid="Base_Column_List" /> from userinfo where USERNAME=#{username.jdbcType=VARCHAR}
   </select>
 
+  <select id="selectEmailByUsername" resultType="java.lang.String">
+    select email from userinfo where username=#{username,jdbcType=VARCHAR}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -27,7 +31,6 @@
     where U_ID = #{uId,jdbcType=DECIMAL}
   </delete>
   <insert id="insert" parameterType="entity.Userinfo" >
-
     <selectKey keyProperty="uId" order="BEFORE" resultType="int">
       select seq_user_info_id.nextval from dual
     </selectKey>

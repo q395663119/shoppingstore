@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=basePath%>resource/css/resetcar.css">
     <link rel="stylesheet" href="<%=basePath%>resource/css/carts.css">
+    <link rel="stylesheet" href="<%=basePath%>resource/css/search.css">
 
 
     <style>
@@ -437,6 +438,11 @@
                         "username":getCookie("username"),
                         "pid":labels.eq(i).attr("pid"),
                         "pnum":labels.eq(i).attr("pnum")
+                    },
+                    success:function (data) {
+                        if(data=="yes"){
+
+                        }
                     }
 
                 });

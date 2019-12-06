@@ -6,6 +6,8 @@ import entity.Userinfo;
 public interface UserService {
     Userinfo selectByUsername(String username);
 
+    String selectEmailByUsername(String username);
+
     int deleteByPrimaryKey(Integer uId);
 
     int insert(Userinfo record);

@@ -16,6 +16,10 @@ public class UserServiceImpl implements UserService {
         return uim.selectByUsername(username);
     }
 
+    public String selectEmailByUsername(String username) {
+        return uim.selectEmailByUsername(username);
+    }
+
     public int deleteByPrimaryKey(Integer uId) {
         return uim.deleteByPrimaryKey(uId);
     }

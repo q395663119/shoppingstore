@@ -17,6 +17,9 @@
     <!--对静态资源不进行处理，例如js,css,jpg等等 -->
     <mvc:default-servlet-handler />
 
+    <!-- 启动AspectJ自动代理 -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
     <!--开启注解驱动-->
     <mvc:annotation-driven />
 
@@ -28,4 +31,23 @@
         <!-- 后缀 -->
         <property name="suffix" value=".jsp" />
     </bean>
+
+    <!--xml里指明切面类-->
+    <bean id="myAs" class="aspect.OrderAspect"></bean>
+
+     <!--aop:config标签用来配置有关切面的配置  -->
+     <aop:config>
+         <!-- 设置切点表达式 以便下面引用 -->
+         <aop:pointcut expression="execution(* controller.ShopCartController.deleteProductNum(..))" id="cut"/>
+         <!-- 配置切面所用的bean 和优先级 -->
+         <aop:aspect ref="myAs" order="2" >
+             <!-- 配置切面方法 -->
+             <aop:before method="beforeCheck" pointcut-ref="cut"/>
+             <aop:after method="afterCheck"  pointcut-ref="cut"/>
+             <aop:after-returning method="afterReturn" pointcut-ref="cut" returning="res"/>
+             <aop:after-throwing method="afterThrow" pointcut-ref="cut" throwing="ex"/>
+             <aop:around method="around" pointcut-ref="cut"/>
+         </aop:aspect>
+
+     </aop:config>
 </beans>

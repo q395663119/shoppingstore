@@ -145,10 +145,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        }else{
          $("#msg").html("用户账号或密码不能为空");
        }
-
-
-
-     })
+     });
 
 /*注册账号*/
      $("#btnRegister").click(function(){
