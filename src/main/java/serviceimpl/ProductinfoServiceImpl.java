@@ -13,12 +13,16 @@ public class ProductinfoServiceImpl implements ProductinfoService {
     @Autowired
     ProductinfoMapper pfm;
 
+    public List<Productinfo> selectAllShopByP_type(String p_type) {
+        return pfm.selectAllShopByP_type(p_type);
+    }
+
     public List<String> selectAllP_type() {
         return pfm.selectAllP_type();
     }
 
-    public List<Productinfo> selectAllProductsByP_type(String p_type) {
-        return pfm.selectAllProductsByP_type(p_type);
+    public List<Productinfo> selectAllProductsByP_type(String p_type,Integer page) {
+        return pfm.selectAllProductsByP_type(p_type,page);
     }
 
     public int deleteByPrimaryKey(Integer pId) {

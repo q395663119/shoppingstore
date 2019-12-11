@@ -239,12 +239,6 @@
         <div class='pieces'>
 
 
-
-
-
-
-
-
             <div class='future_ui__piece blank'></div>
             <div class='future_ui__piece blank'></div>
             <div class='future_ui__piece blank'></div>
@@ -304,7 +298,6 @@ $(function(){
    $(".pieces").on("click",".future_ui__piece",function(){
        var type=$(this).children().children().children().text();
        $("#myframe").attr("src","<%=basePath%>resource/shop/showProducts.jsp?p_type="+type+"&username="+getQueryString("username"));
-
        $(".intro").hide();
        $("#myframe").show();
        $("#topImg").show();
