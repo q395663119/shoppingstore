@@ -10,6 +10,10 @@
   <sql id="Base_Column_List" >
     AD_ID, AD_NAME, AD_PASSWORD, ROLE
   </sql>
+  <select id="selectByadName" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from admininfo where AD_NAME=#{adName.jdbcType=VARCHAR}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

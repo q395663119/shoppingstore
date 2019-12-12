@@ -38,4 +38,20 @@ public class NavigatorAndShowProductsController {
     public List<Productinfo> selectAllShopByP_type(@RequestParam String p_type){
         return psi.selectAllShopByP_type(p_type);
     }
+
+    @RequestMapping("UpdateStatus")
+    public String UpStatus(@RequestParam Integer pid){
+        Productinfo pi = psi.selectByPrimaryKey(pid);
+        if(pi.getStatus()==0){
+            pi.setStatus(1);
+            psi.updateByPrimaryKey(pi);
+            return "down";
+        }else if(pi.getStatus()==1){
+            pi.setStatus(0);
+            psi.updateByPrimaryKey(pi);
+            return "up";
+        }else{
+            return "no";
+        }
+    }
 }

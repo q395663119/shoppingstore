@@ -165,6 +165,7 @@
     </style>
 </head>
 <body>
+<%--能处理接收图片数据--%>
 <form action="addProducts" method="post" enctype="multipart/form-data">
 
 <div class="search d1 a1" id="div1">

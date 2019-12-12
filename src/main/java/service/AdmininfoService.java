@@ -1,8 +1,8 @@
-package mapper;
+package service;
 
 import entity.Admininfo;
 
-public interface AdmininfoMapper {
+public interface AdmininfoService {
     Admininfo selectByadName(String adName);
 
     int deleteByPrimaryKey(Integer adId);
