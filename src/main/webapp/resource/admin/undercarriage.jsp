@@ -133,7 +133,7 @@
                     }
                 }
                 $(".order_content").on("click","input",function () {
-                    // var dom=$(this);
+                    var dom=$(this);
                     var pid=$(this).attr("pid");
                     $.ajax({
                         url:"UpdateStatus",

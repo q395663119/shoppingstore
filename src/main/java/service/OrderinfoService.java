@@ -2,6 +2,9 @@ package service;
 
 import entity.Orderinfo;
 
+import java.util.List;
+
+
 public interface OrderinfoService {
     int deleteByPrimaryKey(Integer oId);
 

@@ -1,6 +1,7 @@
 package controller;
 
 import entity.Admininfo;
+import entity.Orderinfo;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,4 +28,5 @@ public class AdminLoginController {
             }
         }
     }
+
 }

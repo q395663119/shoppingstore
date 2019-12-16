@@ -209,6 +209,9 @@
         $("#undercarriage").click(function () {
             $("#myframe").attr("src","resource/admin/undercarriage.jsp");
         })
+        $("#undeliver").click(function () {
+            $("#myframe").attr("src","resource/products/delivery.jsp");
+        })
     })
 
 </script>
