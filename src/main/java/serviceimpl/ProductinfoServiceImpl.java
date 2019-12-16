@@ -13,6 +13,11 @@ public class ProductinfoServiceImpl implements ProductinfoService {
     @Autowired
     ProductinfoMapper pfm;
 
+
+    public List<Productinfo> showshop(Integer pid) {
+        return pfm.showshop(pid);
+    }
+
     public List<Productinfo> selectAllShopByP_type(String p_type) {
         return pfm.selectAllShopByP_type(p_type);
     }

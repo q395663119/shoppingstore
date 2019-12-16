@@ -70,7 +70,7 @@
             type:"post",
             success:function (data) {
                 for(var i=0;i<data.length;i++) {
-                    if (data[i].status == 0) {
+                    if (data[i].status == 2) {
                         var ul = "<ul class='order_lists'>" +
                             "                <li class=\"list_chk\">\n" +
                             "                    <p for=\"checkbox_2\">" + data[i].userid + "</p>\n" +
@@ -91,63 +91,16 @@
                             "                    <p class='sum_price'>" + data[i].pid + "</p>" +
                             "                </li>" +
                             "                <li class='list_op'>" +
-                            "                    <p class='del' status='" + data[i].status + "'>未发货&nbsp&nbsp<input type='button' value='订单发货' oId='"+data[i].oId+"'/></p>" +
-                            "                </li>" +
-                            "            </ul>";
-                        $(".order_content").append(ul);
-                    }else if(data[i].status==1){
-                        var ul = "<ul class='order_lists'>" +
-                            "                <li class=\"list_chk\">\n" +
-                            "                    <p for=\"checkbox_2\">" + data[i].userid + "</p>\n" +
-                            "                </li>\n" +
-                            "                <li class=\"list_con\">\n" +
-                            "                    <p class=\"list_text\">" + data[i].pCode + "</div>\n" +
-                            "                </li>" +
-                            "                <li class=\"list_info\">" +
-                            "                    <p>" + data[i].pName + "</p>" +
-                            "                </li>" +
-                            "                <li class=\"list_price\">" +
-                            "                    <p class=\"price\">" + data[i].odNum + "</p>" +
-                            "                </li>" +
-                            "                <li class=\"list_amount\">" +
-                            "                    <p class=\"amount_box\">" + data[i].ordertime + "</p>" +
-                            "                </li>" +
-                            "                <li class='list_sum'>" +
-                            "                    <p class='sum_price'>" + data[i].pid + "</p>" +
-                            "                </li>" +
-                            "                <li class='list_op'>" +
-                            "                    <p class='del' status='" + data[i].status + "'>已发货&nbsp&nbsp<input type='button' value='取消发货' oId='\"+data[i].oId+\"'</p>" +
+                            "                    <p class='del' status='" + data[i].status + "'>已退货&nbsp&nbsp<input type='button' value='重新发货' oId='"+data[i].oId+"'/></p>" +
                             "                </li>" +
                             "            </ul>";
                         $(".order_content").append(ul);
                     }
                 }
-
-                $(".order_content").on("click","input",function () {
-                    var dom=$(this);
-                    var oId=$(this).attr("oId");
-                    $.ajax({
-                        url:"ChangeOrders",
-                        type:"post",
-                        data:{
-                            "oId":oId
-                        },
-                        success:function (data) {
-                            if(data=="up"){
-                                dom.parent().html("已发货&nbsp&nbsp<input type='button' value='取消发货' oId='"+oId+"'/>");
-                            }else if(data=="down"){
-                                dom.parent().html("未发货&nbsp&nbsp<input type='button' value='订单发货' oId='"+oId+"'/>");
-                            }else{
-                                dom.parent().text("未成功");
-                            }
-                        }
-                    })
-                })
-
             }
         })
     })
-    
+
     function getQueryString(name){
         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);

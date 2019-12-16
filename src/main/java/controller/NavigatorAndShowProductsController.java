@@ -54,4 +54,9 @@ public class NavigatorAndShowProductsController {
             return "no";
         }
     }
+
+    @RequestMapping("showshop")
+    public List<Productinfo> showshop(@RequestParam Integer pid){
+        return psi.showshop(pid);
+    }
 }

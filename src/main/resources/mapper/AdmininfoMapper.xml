@@ -7,9 +7,25 @@
     <result column="AD_PASSWORD" property="adPassword" jdbcType="VARCHAR" />
     <result column="ROLE" property="role" jdbcType="DECIMAL" />
   </resultMap>
+  <resultMap id="BaseResultMap2" type="entity.Delivery" >
+    <id column="O_ID" property="oId" jdbcType="DECIMAL" />
+    <result column="USERID" property="userid" jdbcType="DECIMAL" />
+    <result column="P_CODE" property="pCode" jdbcType="DECIMAL" />
+    <result column="P_NAME" property="pName" jdbcType="VARCHAR" />
+    <result column="OD_NUM" property="odNum" jdbcType="DECIMAL" />
+    <result column="ORDERTIME" property="ordertime" jdbcType="VARCHAR" />
+    <result column="PID" property="pid" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List2">
+  O_ID,USERID,P_CODE,P_NAME,OD_NUM,ORDERTIME,PID,STATUS
+  </sql>
   <sql id="Base_Column_List" >
     AD_ID, AD_NAME, AD_PASSWORD, ROLE
   </sql>
+  <select id="selectAllOrder" resultMap="BaseResultMap2">
+    select oi.o_id,oi.userid,pi.p_code,pi.p_name,od.od_num,oi.ordertime,oi.pid,oi.status from orderinfo oi,orderdetail od ,productinfo pi where oi.pid=od.od_id and od.p_id=pi.p_id
+  </select>
   <select id="selectByadName" resultMap="BaseResultMap">
     select <include refid="Base_Column_List" /> from admininfo where AD_NAME=#{adName.jdbcType=VARCHAR}
   </select>

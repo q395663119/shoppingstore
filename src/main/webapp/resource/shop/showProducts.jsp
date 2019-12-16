@@ -110,7 +110,7 @@
                     var str="<div class='product'>" +
                         "            <div class='product__info'>" +
                         "                <img class='product__image' src='"+data[i].pic+"' alt='Product 1' />" +
-                        "                <h3 class='product__title'>"+data[i].pName+"</h3>" +
+                        "                <h3 class='product__title' pid='"+data[i].pId+"'>"+data[i].pName+"</h3>" +
                         "                <span class='product__region extra highlight'>"+data[i].intro+"</span>" +
                         "                <span class='product__price highlight'>"+data[i].price+"</span>" +
                         "                <button class='action action--button action--buy' pid='"+data[i].pId+"'><i class='fa fa-shopping-cart'></i><span class='action__text cd-add-to-cart'>加入购物车</span></button>" +
@@ -127,6 +127,10 @@
             }
         });
 
+        $(".grid").on("click",".product__title",function () {
+            var pid = $(this).attr("pid")
+           window.location.href="<%=basePath%>resource/shop/showshop.jsp?pid="+pid;
+        })
 
         $(".grid").on("click",".action",function(){
             //alert($(this).attr("pid"));
