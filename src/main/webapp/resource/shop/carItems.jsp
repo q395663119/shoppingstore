@@ -352,7 +352,7 @@
 
         });
 
-
+          /*移出商品*/
         $(".cartBox").on("click",".delBtn",function(){
             $(this).parent().parent().parent().remove();
             $.ajax({
@@ -388,7 +388,7 @@
 
         })
 
-
+         /*结算时向邮箱发送动态验证码*/
         var checkCode;
         $("#sendMail").click(function () {
             $.ajax({
@@ -431,7 +431,7 @@
 
                 });
 
-
+                /*商品支付成功后删除该商品在购物车页面的所有信息*/
                 $.ajax({
                     url:"deleteProductNum",
                     type:"post",

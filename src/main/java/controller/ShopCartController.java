@@ -54,6 +54,7 @@ public class ShopCartController {
             return "";
         }
 
+        /*购物车商品信息展示页面--后端代码*/
         @RequestMapping("getCar")
     public List<Productinfo> getCar(@RequestParam String username){
             Jedis jedis = jp.getResource();//获取jedis对象
@@ -69,6 +70,7 @@ public class ShopCartController {
             return list;
         }
 
+        /*点击“移出商品”相应的删除redis里的数据*/
         @RequestMapping("removeItems")
     public void removeItems(@RequestParam String pid,@RequestParam String username){
             Jedis jedis = jp.getResource();//获取jedis对象
@@ -79,6 +81,7 @@ public class ShopCartController {
             jedis.hmset(username,map);
         }
 
+        /*对购物车页面展示的商品数量减少的代码执行*/
         @RequestMapping("reduceItemsNum")
     public void reduceItemsNum(@RequestParam String pnum,@RequestParam String pid,@RequestParam String username){
             Jedis jedis = jp.getResource();
@@ -91,6 +94,7 @@ public class ShopCartController {
             }
         }
 
+    /*对购物车页面展示的商品数量增加的代码执行*/
         @RequestMapping("plusItemsNum")
     public void plusItemsNum(@RequestParam String pid,@RequestParam String username) {
             Jedis jedis = jp.getResource();//获取jedis对象
@@ -100,6 +104,7 @@ public class ShopCartController {
         }
 
 
+        /*以下是购物车结算时向邮箱发送动态验证码的执行代码*/
     public  void sendEmail(String emailCount, int randomNum, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html");
         resp.setCharacterEncoding("UTF-8");
@@ -147,6 +152,8 @@ public class ShopCartController {
             return String.valueOf(randomNum);
     }
 
+    /*商品支付成功后，删除购物车页面该商品所有信息后
+    * 根据pid查询该商品的 现库存数量=原库存数量-已购买的数量*/
     @RequestMapping("deleteProductNum")
     public  synchronized String deleteProductNum(@RequestParam String username,@RequestParam Integer pid,@RequestParam Integer pnum){
             Productinfo pi = psi.selectByPrimaryKey(pid);

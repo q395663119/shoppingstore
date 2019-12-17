@@ -65,6 +65,7 @@
 
 <script type="text/javascript">
     $(function () {
+        /*根据三个表相同子弹查询所有的订单，根据订单表的status的值判断订单的状态(发货/未发货)*/
         $.ajax({
             url:"selectAllOrder",
             type:"post",
@@ -123,6 +124,7 @@
                     }
                 }
 
+                /*点击该按钮，根据oid查询orderinfo表，修改表中status的值，改变订单的状态值*/
                 $(".order_content").on("click","input",function () {
                     var dom=$(this);
                     var oId=$(this).attr("oId");

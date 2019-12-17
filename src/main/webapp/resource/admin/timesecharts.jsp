@@ -24,6 +24,7 @@
 <script type="text/javascript">
 
     $(function () {
+        /*记录每个月浏览该商城系统的次数*/
         var datax=[];
         var datay=[];
         $.ajax({

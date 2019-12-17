@@ -92,6 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        var username2=getCookie("flag");
        var password=getCookie("password");
 
+       /*判断记住密码是否勾选后，对cookie进行操作*/
        if(username2=="no"){
            $("#username1").val(getCookie("username"));
            $("#password1").val(getCookie("password"));
@@ -121,6 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        } else {
          flag = "no"
        }
+       /*判断用户、密码不能为空*/
        if($("#username1").val()!=''&&$("#password1").val()!='') {
          $.ajax({
            url: "login",
@@ -149,6 +151,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 /*注册账号*/
      $("#btnRegister").click(function(){
+       /*首先进行判断用户、密码、邮箱都不能为空*/
        if($("#username2").val()!=''&&$("#password2").val()!=''&&$("#email").val()!='') {
          $.ajax({
            url: "register",
@@ -177,6 +180,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      })
 
    })
+   /*js如何获取cookie的值*/
    function getCookie(name){
      var strcookie = document.cookie;//获取cookie字符串
      var arrcookie = strcookie.split("; ");//分割

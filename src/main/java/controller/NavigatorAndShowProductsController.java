@@ -29,6 +29,7 @@ public class NavigatorAndShowProductsController {
         return psi.selectAllProductsByP_type(p_type,page);
     }
 
+    /*根据’selectAll‘此sql语句查询当前网站每月的访问量*/
     @RequestMapping("getWebData")
     public List<WebInfo> selectAll(){
         return wsi.selectAll();
@@ -36,11 +37,14 @@ public class NavigatorAndShowProductsController {
 
     @RequestMapping("selectAllShopByP_type")
     public List<Productinfo> selectAllShopByP_type(@RequestParam String p_type){
+        /*根据sql语句按照p_type查询当前所有类型商品的信息*/
         return psi.selectAllShopByP_type(p_type);
     }
 
     @RequestMapping("UpdateStatus")
     public String UpStatus(@RequestParam Integer pid){
+        /*根据sql语句按pid查询productinfo表中status的值
+        * 如果status的值位0，表示商品已上架，点击按钮可以把值改为1，表示未上架*/
         Productinfo pi = psi.selectByPrimaryKey(pid);
         if(pi.getStatus()==0){
             pi.setStatus(1);
@@ -57,6 +61,7 @@ public class NavigatorAndShowProductsController {
 
     @RequestMapping("showshop")
     public List<Productinfo> showshop(@RequestParam Integer pid){
+        /*根据sql语句按照pid查询当前商品的详细信息*/
         return psi.showshop(pid);
     }
 }

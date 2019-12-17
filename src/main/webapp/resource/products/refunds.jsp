@@ -65,6 +65,7 @@
 
 <script type="text/javascript">
     $(function () {
+        /*根据查询orderinfo表中status的值是否为2，则显示在退货的页面中*/
         $.ajax({
             url:"selectAllOrder",
             type:"post",

@@ -90,6 +90,7 @@
 
 <script type="text/javascript">
     $(function () {
+        /*根据商品类型查询所有商品，再根据status的值判断商品的状态*/
         $.ajax({
             url:"selectAllShopByP_type",
             type:"post",
@@ -132,6 +133,7 @@
                         $(".order_content").append(ul);
                     }
                 }
+                /*点击该标签发送ajax修改status的值，进行商品状态的修改*/
                 $(".order_content").on("click","input",function () {
                     var dom=$(this);
                     var pid=$(this).attr("pid");

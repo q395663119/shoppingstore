@@ -50,6 +50,7 @@
 
 <script type="text/javascript">
     $(function () {
+        /*进行管理员登录请求，登录成功跳转到管理员页面*/
         $("#btnLogin").click(function () {
             if($("#adName").val()!=''&&$("#adPassword").val()!=''){
                 $.ajax({

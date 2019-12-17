@@ -58,7 +58,7 @@
 
 <script>
     $(function(){
-
+         /*根据商品类型，查出所有的商品*/
         $(".tcdPageCode").createPage({
             pageCount: 60,
             current: 1,
@@ -97,7 +97,7 @@
 
             }
         });
-
+         /*查询该类型所有商品，进行分页*/
         $.ajax({
             url:"selectAllProductsByP_type",
             type:"post",
@@ -127,17 +127,20 @@
             }
         });
 
+        /*点击商品名字跳转进入商品详情页面*/
         $(".grid").on("click",".product__title",function () {
             var pid = $(this).attr("pid")
            window.location.href="<%=basePath%>resource/shop/showshop.jsp?pid="+pid;
         })
 
+        /*点击加入购物车*/
         $(".grid").on("click",".action",function(){
             //alert($(this).attr("pid"));
             //当data[i].pId放在<span>标签内获取pid方式：
            // $(this).children().req(1).attr("pId");
 
            // var username="${sessionScope.username}";
+            /*判断用户是否登录，没有的话跳转登录页面进行登录，否侧执行下面请求发送ajax请求*/
             if(getCookie("username")!="null"&&getCookie("username")!=''&&getCookie("username")!=undefined){
                 $.ajax({
                     url:"addCart",

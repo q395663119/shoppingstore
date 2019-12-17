@@ -206,12 +206,15 @@
             $("#myframe").attr("src","resource/admin/unDeliverOrders.jsp");
 
         });
+        //点击商品管理进入商品状态页面
         $("#undercarriage").click(function () {
             $("#myframe").attr("src","resource/admin/undercarriage.jsp");
         })
+        //点击待出货进入订单状态页面
         $("#undeliver").click(function () {
             $("#myframe").attr("src","resource/products/delivery.jsp");
         })
+        //点击退货进入订单退货页面
         $("#backdeliver").click(function () {
             $("#myframe").attr("src","resource/products/refunds.jsp");
         })

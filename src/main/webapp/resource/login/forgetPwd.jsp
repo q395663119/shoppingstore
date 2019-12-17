@@ -30,6 +30,7 @@
     <script type="text/javascript">
         $(function(){
             $("#btnUpdate").click(function(){
+                /*首先进行判断用户、两次输入密码是否为空*/
                 if($("#username3").val()!=''&&$("#password3").val()!=''&&$("#password4").val()!='') {
                     $.ajax({
                         url: "update",

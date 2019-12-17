@@ -70,6 +70,7 @@
 
 <script type="text/javascript">
     $(function () {
+        /*点击商品名字，根据商品id查询该商品的详细信息*/
         $.ajax({
             url:"showshop",
             type:"post",

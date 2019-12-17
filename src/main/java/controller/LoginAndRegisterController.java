@@ -25,6 +25,7 @@ public class LoginAndRegisterController {
         if(ui==null){
             return "none";
         }else{
+            /*判断两次输入的密码是否一致*/
            if(DigestUtils.md5Hex(password2.getBytes()).equals(DigestUtils.md5Hex(password.getBytes()))){
                ui.setPassword(DigestUtils.md5Hex(password.getBytes()));
                usi.updateByPrimaryKeySelective(ui);
@@ -38,15 +39,18 @@ public class LoginAndRegisterController {
     /*用cookie做登录*/
     @RequestMapping("/login")
     public String login(@RequestParam String username, @RequestParam String password, @RequestParam String flag, HttpServletRequest req, HttpServletResponse resp){
+        /*首先查询用户是否已存在，如果没有提示注册*/
         Userinfo ui =usi.selectByUsername(username);
         if(ui==null){
             return "none";
         }else{
+            /*校验密码是否与数据库中的一致*/
             if(DigestUtils.md5Hex(password.getBytes()).equals(ui.getPassword())){
                 //if(flag.equals("yes")){
                     ui.setPassword(password);
                   //  req.getSession().setAttribute("in",ui);
 
+                     /*利用cookie进行登录*/
                     Cookie name = new Cookie("username",username);
                     Cookie pwd = new Cookie("password",password);
                     name.setMaxAge(10000);
@@ -102,7 +106,7 @@ public class LoginAndRegisterController {
 
     @RequestMapping("/register")
     public String register(@RequestParam String username, @RequestParam String password, @RequestParam String email) {
-        /**/
+        /*判断注册用户是否已存在*/
         if (usi.selectByUsername(username) != null) {
             return "existed";
         } else {
@@ -113,6 +117,7 @@ public class LoginAndRegisterController {
             Date date = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             ui.setRegisterTime(sdf.format(date));
+            /*把注册的数据存入数据库中*/
             int line = usi.insert(ui);
             if (line > 0) {
                 return "yes";
